@@ -38,9 +38,6 @@ function App() {
         <Route  path="/signup">
           <Signup></Signup>
         </Route>
-        <Route  path="/selected">
-          <Selected></Selected>
-        </Route>
         <Route path="/order">
           <Order></Order>
         </Route>
