@@ -34,11 +34,16 @@ function Login() {
             }
         })
         const data=await res.json();
-        localStorage.setItem("token",data.data)
+        
+
+        if(data.data=="invalid"){
+        alert("invalid email / password ")
+        }else{
+          localStorage.setItem("token",data.data)
         localStorage.setItem("roleName",data.name)
         localStorage.setItem("role",'admin')
-
         navigate.push("/inventory")
+        }
         console.log("data",data);
         console.log(JSON.stringify(usreInfo));
         }
@@ -57,12 +62,16 @@ function Login() {
             }
         })
         const data=await res.json();
-        localStorage.setItem("token",data.data)
+        if(data.data=="invalid"){
+          alert("invalid email / password ")
+          }else{
+            localStorage.setItem("token",data.data)
         localStorage.setItem("roleName",data.name)
         localStorage.setItem("role",'user')
         navigate.push("/")
-        console.log("data",data);
-        console.log(JSON.stringify(usreInfo));
+          }
+        
+       
         }
     }
   };
