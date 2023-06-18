@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { setToken } from '../Authendication/auth';
 import Navbar from '../Base/Navbar';
 import { MenuCtx } from '../Context/AppProvider';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 function Login() {
   const {role, setRole, setRoleObject, roleObject} = useContext(MenuCtx);
@@ -110,7 +111,7 @@ function Login() {
                     <input type="password" id="password" className="form-control" name="password" required value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                   </div>
                   <div className="form-group">
-                    <a href="/mailcheck">Forgot Password?</a>
+                  <Link to="/mailcheck" className="ml-3">Forgot Password?</Link>
                   </div>
                   <button className="btn btn-primary" onClick={handleLogin}>
                 Login
@@ -133,7 +134,7 @@ function Login() {
                     {/* <input type="password" className="form-control" /> */}
                   </div>
                   <div className="form-group">
-                    <a href="/mailcheck">Forgot Password?</a>
+                  <Link to="/mailcheck" className="ml-3">Forgot Password?</Link>
                   </div>
                   <button className="btn btn-primary" onClick={handleLogin}>
                 Login
