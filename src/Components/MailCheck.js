@@ -63,8 +63,8 @@ function MailCheck() {
               Admin
             </button>
             <button
-              className={`btn btn-outline-primary ${selectedRole === 'users' ? 'active' : ''}`}
-              onClick={() => handleRoleChange('user')}
+              className={`btn btn-outline-primary ${selectedRole === 'user' ? 'active' : ''}`}
+              onClick={() => handleRoleChange('users')}
               style={{ width: '50%' }}
             >
               User
