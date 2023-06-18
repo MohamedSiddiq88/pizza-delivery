@@ -46,7 +46,7 @@ function MailCheck() {
     setResult(data.data);
     if(data.data!=="invalid token"){
     console.log(data.data);
-    navigate.push(`/resetpassword?token=${string}`)
+    navigate.push(`/resetpassword?token=${string}&role=${selectedRole}`)
     }
   };
 

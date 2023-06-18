@@ -9,6 +9,7 @@ function ResetPassword() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const token = searchParams.get('token');
+  const role = searchParams.get('role');
   const [isValidToken, setIsValidToken] = useState(false);
 
   const handlePasswordReset = async () => {
@@ -23,7 +24,7 @@ function ResetPassword() {
       token: token
     };
 
-    const response = await fetch('https://pizza-express-git-webcode-mohamedsiddiq88.vercel.app/users/reset-password', {
+    const response = await fetch(`https://pizza-express-git-webcode-mohamedsiddiq88.vercel.app/${role}/reset-password`, {
       method: 'POST',
       body: JSON.stringify(requestData),
       headers: {
