@@ -63,7 +63,7 @@ function MailCheck() {
               Admin
             </button>
             <button
-              className={`btn btn-outline-primary ${selectedRole === 'user' ? 'active' : ''}`}
+              className={`btn btn-outline-primary ${selectedRole === 'users' ? 'active' : ''}`}
               onClick={() => handleRoleChange('users')}
               style={{ width: '50%' }}
             >
@@ -111,7 +111,7 @@ function MailCheck() {
                 </div>
               ) : (
                 <div>
-                  <h5 className="card-title">user Mail Check</h5>
+                  <h5 className="card-title">User Mail Check</h5>
                   <div className="form-group">
                     <label>Email</label>
                     <input
