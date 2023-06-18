@@ -14,7 +14,7 @@ function MailCheck() {
   };
 
   const handleEmailCheck = async () => {
-    const response = await fetch('http://localhost:9090/users/checkmail', {
+    const response = await fetch(`pizza-express-1exfovo5o-mohamedsiddiq88.vercel.app/${selectedRole}/checkmail`, {
       method: 'POST',
       body: JSON.stringify({ email:email }),
       headers: {
@@ -34,7 +34,7 @@ function MailCheck() {
 
   const handlePasswordReset = async () => {
     const token = 'your_token'; // Replace with your token
-    const response = await fetch(`http://localhost:9090/users/checkstring?token=${string}`, {
+    const response = await fetch(`pizza-express-1exfovo5o-mohamedsiddiq88.vercel.app/${selectedRole}/checkstring?token=${string}`, {
       method: 'POST',
       body: JSON.stringify({ randomString:string }),
       headers: {
@@ -63,7 +63,7 @@ function MailCheck() {
               Admin
             </button>
             <button
-              className={`btn btn-outline-primary ${selectedRole === 'user' ? 'active' : ''}`}
+              className={`btn btn-outline-primary ${selectedRole === 'users' ? 'active' : ''}`}
               onClick={() => handleRoleChange('user')}
               style={{ width: '50%' }}
             >
