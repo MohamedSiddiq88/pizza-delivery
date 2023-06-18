@@ -26,6 +26,7 @@ function MailCheck() {
 
     if (!(data.data=="invalid")) {
       setIsEmailValid(true);
+      alert("The string sent to the mail please go to the https://ethereal.email/ user: blake.mills@ethereal.email,pass: QDm1tFYXuPewf3d3Cs")
     } else {
       setIsEmailValid(false);
       alert('Invalid email');
