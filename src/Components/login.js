@@ -110,7 +110,7 @@ function Login() {
                     <input type="password" id="password" className="form-control" name="password" required value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                   </div>
                   <div className="form-group">
-                    <a href="#">Forgot Password?</a>
+                    <a href="/mailcheck">Forgot Password?</a>
                   </div>
                   <button className="btn btn-primary" onClick={handleLogin}>
                 Login
@@ -133,7 +133,7 @@ function Login() {
                     {/* <input type="password" className="form-control" /> */}
                   </div>
                   <div className="form-group">
-                    <a href="#">Forgot Password?</a>
+                    <a href="/mailcheck">Forgot Password?</a>
                   </div>
                   <button className="btn btn-primary" onClick={handleLogin}>
                 Login

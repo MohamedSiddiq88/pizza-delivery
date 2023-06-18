@@ -4,12 +4,13 @@ import Dashboard from './Components/Dashboard';
 import { useContext } from 'react';
 import { MenuCtx } from './Context/AppProvider';
 import Customise from './Components/Customise';
-import Selected from './Components/Selected';
 import Login from './Components/login';
 import Signup from './Components/signup';
 import ManagementSystem from './Components/ManagementSystem';
 import Order from './Components/Order';
 import UserOrder from './Components/UserOrder';
+import MailCheck from './Components/MailCheck';
+import ResetPassword from './Components/ResetPassword';
 
 
 function App() {
@@ -44,8 +45,11 @@ function App() {
         <Route path="/userorder">
           <UserOrder></UserOrder>
         </Route>
-        <Route path="/select">
-          <Selected></Selected>
+        <Route path="/mailcheck">
+          <MailCheck></MailCheck>
+        </Route>
+        <Route path="/resetpassword">
+          <ResetPassword></ResetPassword>
         </Route>
         </Switch>
     </div>
