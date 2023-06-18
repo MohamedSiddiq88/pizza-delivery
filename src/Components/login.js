@@ -116,7 +116,7 @@ function Login() {
                 Login
               </button>
               <button className="btn btn-primary" onClick={()=>navigate.push("/signup")}>
-                signUp
+                signup
               </button>
                 </div>
               ) : (
