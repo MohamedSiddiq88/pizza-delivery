@@ -14,7 +14,7 @@ function MailCheck() {
   };
 
   const handleEmailCheck = async () => {
-    const response = await fetch(`pizza-express-1exfovo5o-mohamedsiddiq88.vercel.app/${selectedRole}/checkmail`, {
+    const response = await fetch(`https://pizza-express-git-webcode-mohamedsiddiq88.vercel.app/${selectedRole}/checkmail`, {
       method: 'POST',
       body: JSON.stringify({ email:email }),
       headers: {
@@ -34,7 +34,7 @@ function MailCheck() {
 
   const handlePasswordReset = async () => {
     const token = 'your_token'; // Replace with your token
-    const response = await fetch(`pizza-express-1exfovo5o-mohamedsiddiq88.vercel.app/${selectedRole}/checkstring?token=${string}`, {
+    const response = await fetch(`https://pizza-express-git-webcode-mohamedsiddiq88.vercel.app/${selectedRole}/checkstring?token=${string}`, {
       method: 'POST',
       body: JSON.stringify({ randomString:string }),
       headers: {
