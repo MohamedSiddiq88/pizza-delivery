@@ -41,7 +41,7 @@ function ResetPassword() {
   };
 
   const handle = async () => {
-    const response = await fetch(`http://localhost:9090/users/checkstring?token=${token}`, {
+    const response = await fetch(`https://pizza-express-git-webcode-mohamedsiddiq88.vercel.app/users/checkstring?token=${token}`, {
       method: 'POST',
       body: JSON.stringify({ randomString: token }),
       headers: {
