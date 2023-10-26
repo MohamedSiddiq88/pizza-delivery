@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { MenuCtx } from '../Context/AppProvider';
 
 function MailCheck() {
+  const {selectedRole, setSelectedRole} = useContext(MenuCtx);
   const [email, setEmail] = useState('');
   const [string, setString] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [result, setResult] = useState('');
-  const [selectedRole, setSelectedRole] = useState('admin');
+  // const [selectedRole, setSelectedRole] = useState('admin');
   const navigate = useHistory();
 
   const handleRoleChange = (role) => {
@@ -14,7 +16,7 @@ function MailCheck() {
   };
 
   const handleEmailCheck = async () => {
-    const response = await fetch(`https://pizza-express-git-webcode-mohamedsiddiq88.vercel.app/${selectedRole}/checkmail`, {
+    const response = await fetch(`https://pizza-express-git-webcode-mohamedsiddiq88.vercel.app/${selectedRole=="user"?selectedRole+"s":selectedRole}/checkmail`, {
       method: 'POST',
       body: JSON.stringify({ email:email }),
       headers: {
@@ -52,9 +54,9 @@ function MailCheck() {
   };
 
   return (
-    <div className="container mt-5 login_container">
+    <div className="container mt-5 ">
       <div className="row">
-        <div className="col-md-6 mx-auto">
+        <div className="col-md-6 mx-auto login_container">
           <div className="text-center ">
             <button
               className={`btn btn-outline-primary ${selectedRole === 'admin' ? 'active' : ''}`}
@@ -64,8 +66,8 @@ function MailCheck() {
               Admin
             </button>
             <button
-              className={`btn btn-outline-primary ${selectedRole === 'users' ? 'active' : ''}`}
-              onClick={() => handleRoleChange('users')}
+              className={`btn btn-outline-primary ${selectedRole === 'user' ? 'active' : ''}`}
+              onClick={() => handleRoleChange('user')}
               style={{ width: '50%' }}
             >
               User
