@@ -1,13 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { setToken } from '../Authendication/auth';
 import Navbar from '../Base/Navbar';
 import { MenuCtx } from '../Context/AppProvider';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import scooter from './scooter1.gif'
 
 function Login() {
-  const {role, setRole, setRoleObject, roleObject} = useContext(MenuCtx);
-  const [selectedRole, setSelectedRole] = useState('admin');
+  const {role, setRole, setRoleObject, roleObject, selectedRole, setSelectedRole} = useContext(MenuCtx);
+  // const [selectedRole, setSelectedRole] = useState('admin');
   const navigate=useHistory();
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
@@ -22,7 +23,7 @@ function Login() {
       // admin login logic
       run();
         async function run() {
-            console.log("hello")
+            // console.log("hello")
             const usreInfo={
                 email,
             password,
@@ -45,8 +46,8 @@ function Login() {
         localStorage.setItem("role",'admin')
         navigate.push("/inventory")
         }
-        console.log("data",data);
-        console.log(JSON.stringify(usreInfo));
+        // console.log("data",data);
+        // console.log(JSON.stringify(usreInfo));
         }
     } else if (selectedRole === 'user') {
         run();
@@ -77,10 +78,12 @@ function Login() {
     }
   };
 
+ 
+
   return (
-    <div className="container mt-5 login_container">
+    <div className="container mt-5 login_div">
       <div className="row">
-        <div className="col-md-6 mx-auto">
+        <div className="col-md-6 mx-auto login_container">
           <div className="text-center ">
             <button
               className={`btn btn-outline-primary ${selectedRole === 'admin' ? 'active' : ''}`}
@@ -110,15 +113,18 @@ function Login() {
                     <label>Password</label>
                     <input type="password" id="password" className="form-control" name="password" required value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                   </div>
-                  <div className="form-group">
+                  <div className="form-group text-center">
                   <Link to="/mailcheck" className="ml-3">Forgot Password?</Link>
                   </div>
+                  <div className="form-group d-grid gap-2 text-center">
                   <button className="btn btn-primary" onClick={handleLogin}>
                 Login
               </button>
-              <button className="btn btn-primary" onClick={()=>navigate.push("/signup")}>
-                signup
-              </button>
+</div>
+                  
+              <div className="text-center">
+                <p className="mb-0">Don't have an account? <Link to="/signup">Sign Up</Link></p>
+              </div>
                 </div>
               ) : (
                 <div>
@@ -126,29 +132,35 @@ function Login() {
                   <div className="form-group">
                     <label>Email</label>
           <input type="email" id="email" className="form-control" name="email" required value={email} onChange={(e)=>{setEmail(e.target.value)}} />
-                    {/* <input type="email" className="form-control" /> */}
                   </div>
                   <div className="form-group">
                     <label>Password</label>
           <input type="password" id="password" className="form-control" name="password" required value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
-                    {/* <input type="password" className="form-control" /> */}
                   </div>
-                  <div className="form-group">
+                  <div className="form-group d-grid gap-2 text-center">
                   <Link to="/mailcheck" className="ml-3">Forgot Password?</Link>
                   </div>
+                  <div className="form-group d-grid gap-2 text-center">
                   <button className="btn btn-primary" onClick={handleLogin}>
                 Login
               </button>
-              <button className="btn btn-primary" onClick={()=>navigate.push("/signup")}>
-                signup
-              </button>
+                  </div>
+                  
+
+              <div className="text-center">
+                <p className="mb-0">Don't have an account? <Link to="/signup">Sign Up</Link></p>
+              </div>
                 </div>
+                
               )}
               
             </div>
           </div>
         </div>
       </div>
+
+<img src={scooter} alt='scooter gif'/>
+
     </div>
   );
 }

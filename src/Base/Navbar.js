@@ -14,6 +14,7 @@ function Navbar() {
 
   return (
     <div className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
       <span className="navbar-brand">{roleName}</span>
       <button
         className="navbar-toggler"
@@ -30,7 +31,7 @@ function Navbar() {
       <div className={`collapse navbar-collapse ${isCollapsed ? '' : 'show'}`} id="navbarNav">
         <ul className="navbar-nav">
           {role === 'admin' && (
-            <>
+            <div className='sm-nave_bar'>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/inventory" activeClassName="active">
                   Home
@@ -41,11 +42,15 @@ function Navbar() {
                   Order
                 </NavLink>
               </li>
-              
-            </>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/login" activeClassName="active" onClick={()=>localStorage.removeItem("token")}>
+                  Sign out
+                </NavLink>
+              </li>
+            </div>
           )}
           {role === 'user' && (
-            <>
+            <div className='sm-nave_bar'>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/" exact activeClassName="active">
                   Home
@@ -53,13 +58,18 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/userorder" activeClassName="active">
-                  order
+                Order
                 </NavLink>
               </li>
-              
-            </>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/login" activeClassName="active" onClick={()=>localStorage.removeItem("token")}>
+                  Sign out
+                </NavLink>
+              </li>
+            </div>
           )}
         </ul>
+      </div>
       </div>
     </div>
   );

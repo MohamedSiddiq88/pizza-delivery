@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { MenuCtx } from '../Context/AppProvider';
 
 function Signup() {
+  const {selectedRole, setSelectedRole} = useContext(MenuCtx);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedRole, setSelectedRole] = useState('admin');
+  // const [selectedRole, setSelectedRole] = useState('admin');
   const navigate = useHistory();
 
   const handleRoleChange = (role) => {
@@ -46,10 +49,12 @@ function Signup() {
     }
   };
 
+
+
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row">
-        <div className="col-md-6 mx-auto">
+        <div className="col-md-6 mx-auto signup_container">
           <div className="text-center">
             <button
               className={`btn btn-outline-primary ${selectedRole === 'admin' ? 'active' : ''}`}
@@ -101,9 +106,14 @@ function Signup() {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
+                  <div className="form-group d-grid gap-2 text-center">
                   <button className="btn btn-primary" onClick={handleSignup}>
                     Signup
                   </button>
+                  </div>
+                  <div className="text-center">
+                <p className="mb-0">Already have an account? <Link to="/login">Login</Link></p>
+              </div>
                 </div>
               ) : (
                 <div>
@@ -138,9 +148,14 @@ function Signup() {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
+                  <div className="form-group d-grid gap-2 text-center">
                   <button className="btn btn-primary" onClick={handleSignup}>
                     Signup
                   </button>
+                  </div>
+                  <div className="text-center">
+                <p className="mb-0">Already have an account? <Link to="/login">Login</Link></p>
+              </div>
                 </div>
               )}
             </div>

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Base from '../Base/Base';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { MenuCtx } from '../Context/AppProvider';
 
 function UserOrder() {
   const [orders, setOrders] = useState([]);
   let history=useHistory();
+  const {pizzaName} = useContext(MenuCtx);
 
   const fetchOrders = async () => {
     try {
@@ -54,11 +56,27 @@ function UserOrder() {
         <div className='row'>
           {orders.map((order) => (
             <div className='col-md-6' key={order._id}>
-              <div className='card mb-3'>
+              <div className='card mb-3 order-card'>
                 <div className='card-body'>
-                  <h5 className='card-title'>{order.pizza}</h5>
+                 <div className='col'>
+                 <img src={pizzaName[order.pizza].name} className='pizza-img'/>
                   <p className='card-text'>Status: {order.status}</p>
                   <p className='card-text'>Toatal Price: ₹{order.totalPrice}</p>
+
+                  </div> 
+                  <div className='col'>
+                  <h2 className='card-title'>{order.pizza}</h2>
+                  <h3>Toppings</h3>
+                  <ul>
+            {(order.toppings)?Object.keys(order.toppings).map((optionType) => (
+              <li key={optionType}>
+                <strong>{optionType}:</strong>{' '}
+                {order.toppings[optionType]?.join(', ')}
+              </li>
+            )):null}
+          </ul>  
+                    </div>                 
+                  
 
                 </div>
               </div>

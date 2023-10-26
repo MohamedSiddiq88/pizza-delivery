@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { MenuCtx } from '../Context/AppProvider';
 import Base from '../Base/Base';
+import EditButton from './EditButton';
+import Row from './Row';
 
 function ManagementSystem() {
   const { pizzaCustomizationOptions } = useContext(MenuCtx);
-
+  const [editClicked,setEditClicked]=useState(false)
   const [editingBaseIndex, setEditingBaseIndex] = useState(null);
   const [updatedQuantity, setUpdatedQuantity] = useState('');
 
@@ -20,17 +22,18 @@ function ManagementSystem() {
   const totalVeggieQuantity = pizzaCustomizationOptions.veggies.reduce((total, item) => total + item.quantity, 0);
   const totalMeatQuantity = pizzaCustomizationOptions.meat.reduce((total, item) => total + item.quantity, 0);
 
-  const handleEdit = (index) => {
+  const handleEdit = (index, category) => {
     setEditingBaseIndex(index);
-    setUpdatedQuantity(pizzaCustomizationOptions.pizzaBase[index].quantity.toString());
+    setUpdatedQuantity(pizzaCustomizationOptions[category][index].quantity.toString());
   };
 
-  const handleUpdate = async (index) => {
+  const handleUpdate = async (index,category) => {
     const newQuantity = parseInt(updatedQuantity);
   
     if (!isNaN(newQuantity) && newQuantity >= 0) {
-      const selectedBase = pizzaCustomizationOptions.pizzaBase[index].name;
+      const selectedBase = pizzaCustomizationOptions[category][index].name;
       const updatedMenuItem = { quantity: newQuantity };
+      console.log("selected base", selectedBase, updatedMenuItem)
       const requestBody = { name: selectedBase, updatedMenuItem };
   
       try {
@@ -96,7 +99,7 @@ function ManagementSystem() {
                 <td>
                   {editingBaseIndex === index  ? (
                     <>
-                      <button className="btn btn-success" onClick={() => handleUpdate(index )}>
+                      <button className="btn btn-success" onClick={() => handleUpdate(index, "pizzaBase" )}>
                         Update
                       </button>
                       <button className="btn btn-danger" onClick={handleCancel}>
@@ -104,7 +107,7 @@ function ManagementSystem() {
                       </button>
                     </>
                   ) : (
-                    <button className="btn btn-primary" onClick={() => handleEdit(index )}>
+                    <button className="btn btn-primary" onClick={() => handleEdit(index, "pizzaBase")}>
                       Edit
                     </button>
                   )}
@@ -130,13 +133,42 @@ function ManagementSystem() {
                 <input type="text" value={totalSauceQuantity} readOnly />
               </td>
             </tr>
-            {pizzaCustomizationOptions.sauce.map((ele) => (
+            {pizzaCustomizationOptions.sauce.map((ele,ind) => (
               <tr key={ele.id}>
                 <td>{ele.name}</td>
                 <td>
                   <input type="text" value={ele.quantity} readOnly />
                 </td>
+                
               </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* Sauce Table */}
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Total Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className={totalSauceQuantity < 20 ? 'table-danger' : ''}>
+              <td>Sauce</td>
+              <td>
+                <input type="text" value={totalSauceQuantity} readOnly />
+              </td>
+            </tr>
+            {pizzaCustomizationOptions.sauce.map((ele,ind) => (
+              <Row
+              setUpdatedQuantity={setUpdatedQuantity}
+              updatedQuantity={updatedQuantity}
+              handleEdit={handleEdit}
+              handleUpdate={handleUpdate}
+              ele={ele}
+              ind={ind}
+              />
             ))}
           </tbody>
         </table>

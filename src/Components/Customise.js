@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import { MenuCtx } from '../Context/AppProvider';
 import Base from '../Base/Base';
@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 function Customise() {
   const [selectedOptions, setSelectedOptions] = useState({});
   let history = useHistory();
-  const { pizzaCustomizationOptions, menuData, id } = useContext(MenuCtx);
+  const { receipt, SetReceipt, pizzaCustomizationOptions, menuData, id } = useContext(MenuCtx);
 
 
 
@@ -70,6 +70,7 @@ function Customise() {
     pizza: menuData[id].itemname,
     status: "pending",
     totalPrice: calculateTotalPrice(),
+    toppings:selectedOptions,
   };
 
 
@@ -178,7 +179,7 @@ function Customise() {
         <div className='container'>
 
           <h2>Customize Your {menuData[id].itemname}</h2>
-          <div className="card mt-4">
+          <div className="card mt-4 customize-card">
             <div className="card-body">
               <h3>Pizza Base</h3>
               {pizzaCustomizationOptions.pizzaBase.map((option, index) => (
@@ -205,6 +206,7 @@ function Customise() {
                     <span className="text-danger ">
                       {' '}{(option.quantity==0)?"Not available":null}
                     </span>
+                    {/* {option.quantity} */}
                   </label>
                 </div>
               ))}
